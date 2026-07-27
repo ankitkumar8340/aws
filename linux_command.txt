@@ -15,4 +15,11 @@ journalctl -u <service>      --> view service logs
 
 
 
+##Networking (essential for cloud/servers)
+
+ping <host>         --> check connectivity
+curl -I <url>       --> check HTTP response headers
+netstat -tulnp      --> list open ports and listening services
+ss -tulnp           --> modern replacement for netstat
+
 
