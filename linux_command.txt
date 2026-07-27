@@ -9,7 +9,9 @@ df -h                --> check disk usage
 du -sh <folder>      --> check folder size
 kill -9 <pid>        --> force kill a process
 
-
+systemctl status <service>   --> check service status (e.g. nginx, docker)
+systemctl start/stop/restart <service>
+journalctl -u <service>      --> view service logs
 
 
 
