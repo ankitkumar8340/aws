@@ -1,0 +1,16 @@
+
+
+##System and process management
+
+ps aux               --> list all running processes
+top / htop           --> monitor CPU, memory, running processes
+free -h              --> check memory usage
+df -h                --> check disk usage
+du -sh <folder>      --> check folder size
+kill -9 <pid>        --> force kill a process
+
+
+
+
+
+
