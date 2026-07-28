@@ -53,3 +53,11 @@ docker build -t name .              --> build image from Dockerfile
 docker run -d -p 80:80 name         --> run container
 docker logs <container>             --> view container logs
 docker exec -it <container> bash    --> shell into a running container
+
+
+##AWS CLI basics (once you get there)
+
+aws configure                   --> set up credentials
+aws s3 ls                       --> list S3 buckets
+aws ec2 describe-instances
+aws s3 cp file s3://bucket/     --> upload file to S3
