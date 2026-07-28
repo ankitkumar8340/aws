@@ -25,3 +25,13 @@ ss -tulnp           --> modern replacement for netstat
 ssh user@host         --> connect to a remote server
 scp file user@host:/path   --> copy files over SSH
 ip a                  --> check network interfaces/IP
+
+
+##File & permission management
+
+chmod 755 file        --> change permissions
+chown user:group file --> change ownership
+ls -la                --> list files with permissions
+find / -name "file"   --> search for files
+grep -r "text" .      --> search text inside files
+tail -f logfile.log   --> live-follow a log file (great for debugging deployed apps)
