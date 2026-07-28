@@ -45,4 +45,11 @@ which <command>               --> find path of a command
 env                           --> view environment variables
 export VAR=value              --> set environment variable (used a lot in cloud configs)
 
+##Docker (since it's on your roadmap)
 
+docker ps                           --> list running containers
+docker images                       --> list images
+docker build -t name .              --> build image from Dockerfile
+docker run -d -p 80:80 name         --> run container
+docker logs <container>             --> view container logs
+docker exec -it <container> bash    --> shell into a running container
