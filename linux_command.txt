@@ -35,3 +35,14 @@ ls -la                --> list files with permissions
 find / -name "file"   --> search for files
 grep -r "text" .      --> search text inside files
 tail -f logfile.log   --> live-follow a log file (great for debugging deployed apps)
+
+
+##Package & environment management
+
+apt update && apt upgrade     --> update packages (Debian/Ubuntu — common on cloud VMs)
+apt install <package>
+which <command>               --> find path of a command
+env                           --> view environment variables
+export VAR=value              --> set environment variable (used a lot in cloud configs)
+
+
