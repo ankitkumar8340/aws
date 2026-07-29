@@ -65,3 +65,12 @@ aws s3 cp file s3://bucket/     --> upload file to S3
 ##copy file from local storage and run in instance 
 
 scp -i "My-Server.pem" "D:\PEP\summer-pep\aws\aws-file" ubuntu@ec2-52-1-89-201.compute-1.amazonaws.com:/home/ubuntu/
+
+
+What to add depends on how you're serving the files:
+
+If you're using...	Add this rule
+Plain HTTP (nginx/apache on port 80)	Type: HTTP, Port: 80, Source: 0.0.0.0/0
+HTTPS (SSL-enabled)	Type: HTTPS, Port: 443, Source: 0.0.0.0/0
+Node.js dev server (e.g. http-server, Express)	Type: Custom TCP, Port: e.g. 3000 or 8080, Source: 0.0.0.0/0
+live-server / VS Code Live Server	Type: Custom TCP, Port: 5500 (or whatever it uses)
