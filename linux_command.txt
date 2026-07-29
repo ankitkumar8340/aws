@@ -61,3 +61,7 @@ aws configure                   --> set up credentials
 aws s3 ls                       --> list S3 buckets
 aws ec2 describe-instances
 aws s3 cp file s3://bucket/     --> upload file to S3
+
+##copy file from local storage and run in instance 
+
+scp -i "My-Server.pem" "D:\PEP\summer-pep\aws\aws-file" ubuntu@ec2-52-1-89-201.compute-1.amazonaws.com:/home/ubuntu/
