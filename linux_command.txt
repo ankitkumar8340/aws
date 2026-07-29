@@ -64,7 +64,7 @@ aws s3 cp file s3://bucket/     --> upload file to S3
 
 ##copy file from local storage and run in instance 
 
-scp -i "My-Server.pem" "D:\PEP\summer-pep\aws\aws-file" ubuntu@ec2-52-1-89-201.compute-1.amazonaws.com:/home/ubuntu/
+scp -i "My-Server.pem" "D:\PEP\summer-pep\aws\aws-file" ubuntu@ec2-ip--.compute-1.amazonaws.com:/home/ubuntu/
 
 
 What to add depends on how you're serving the files:
@@ -74,3 +74,40 @@ Plain HTTP (nginx/apache on port 80)	Type: HTTP, Port: 80, Source: 0.0.0.0/0
 HTTPS (SSL-enabled)	Type: HTTPS, Port: 443, Source: 0.0.0.0/0
 Node.js dev server (e.g. http-server, Express)	Type: Custom TCP, Port: e.g. 3000 or 8080, Source: 0.0.0.0/0
 live-server / VS Code Live Server	Type: Custom TCP, Port: 5500 (or whatever it uses)
+
+the simplest way to go live is with nginx serving it on port 80 (standard web port, no extra port number needed in the URL).
+
+Step 1: SSH into your instance
+
+ssh -i "My-Server.pem" ubuntu@ec2-52-1-89-201.compute-1.amazonaws.com
+
+Step 2: Install nginx
+
+sudo apt update
+sudo apt install nginx -y
+
+Step 3: Copy your files into nginx's web root
+
+sudo rm -rf /var/www/html/*
+sudo cp -r ~/aws-file/* /var/www/html/
+
+Step 4: Start nginx (if not already running)
+
+sudo systemctl start nginx
+sudo systemctl enable nginx
+
+Step 5: Open port 80 in your security group
+Go back to the Inbound rules you were just looking at → Add rule:
+
+Type: HTTP
+Port: 80
+Source: 0.0.0.0/0
+
+Click Save rules.
+
+Step 6: Visit your site
+Open this in a browser:
+
+http://ec2-ip--.compute-1.amazonaws.com
+
+That's it — your index.html should load, and it'll pull in script.js and style.css automatically since they're in the same folder.
