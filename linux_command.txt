@@ -96,7 +96,7 @@ sudo cp -r ~/aws-file/* /var/www/html/
 sudo systemctl start nginx
 sudo systemctl enable nginx
 
-Step 5: Open port 80 in your security group
+##Step 5: Open port 80 in your security group
 Go back to the Inbound rules you were just looking at → Add rule:
 
 Type: HTTP
