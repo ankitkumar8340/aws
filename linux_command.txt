@@ -91,7 +91,7 @@ sudo apt install nginx -y
 sudo rm -rf /var/www/html/*
 sudo cp -r ~/aws-file/* /var/www/html/
 
-Step 4: Start nginx (if not already running)
+##Step 4: Start nginx (if not already running)
 
 sudo systemctl start nginx
 sudo systemctl enable nginx
