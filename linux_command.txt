@@ -86,7 +86,7 @@ ssh -i "My-Server.pem" ubuntu@ec2-52-1-89-201.compute-1.amazonaws.com
 sudo apt update
 sudo apt install nginx -y
 
-Step 3: Copy your files into nginx's web root
+##Step 3: Copy your files into nginx's web root
 
 sudo rm -rf /var/www/html/*
 sudo cp -r ~/aws-file/* /var/www/html/
