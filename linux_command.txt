@@ -81,7 +81,7 @@ live-server / VS Code Live Server	Type: Custom TCP, Port: 5500 (or whatever it u
 
 ssh -i "My-Server.pem" ubuntu@ec2-52-1-89-201.compute-1.amazonaws.com
 
-Step 2: Install nginx
+##Step 2: Install nginx
 
 sudo apt update
 sudo apt install nginx -y
