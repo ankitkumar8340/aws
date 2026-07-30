@@ -105,7 +105,7 @@ Source: 0.0.0.0/0
 
 Click Save rules.
 
-Step 6: Visit your site
+##Step 6: Visit your site
 Open this in a browser:
 
 http://ec2-ip--.compute-1.amazonaws.com
