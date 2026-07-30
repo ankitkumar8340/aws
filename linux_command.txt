@@ -77,7 +77,7 @@ live-server / VS Code Live Server	Type: Custom TCP, Port: 5500 (or whatever it u
 
 ##the simplest way to go live is with nginx serving it on port 80 (standard web port, no extra port number needed in the URL).
 
-Step 1: SSH into your instance
+##Step 1: SSH into your instance
 
 ssh -i "My-Server.pem" ubuntu@ec2-52-1-89-201.compute-1.amazonaws.com
 
@@ -111,3 +111,10 @@ Open this in a browser:
 http://ec2-ip--.compute-1.amazonaws.com
 
 That's it — your index.html should load, and it'll pull in script.js and style.css automatically since they're in the same folder.
+
+
+
+
+
+
+
