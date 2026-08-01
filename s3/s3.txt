@@ -92,7 +92,20 @@ async function getDownloadUrl(key) {
 This is the standard pattern for things like profile picture uploads: your Express backend generates a presigned URL, sends it to the frontend, and the browser uploads directly to S3 — your server never touches the raw file bytes. Scales much better than routing uploads through your server.
 
 
+4. Intermediate — Wiring into an Express route
+javascript
+import express from "express";
+const app = express();
+app.use(express.json());
 
+app.post("/api/upload-url", async (req, res) => {
+  const { fileName, fileType } = req.body;
+  const key = `uploads/${Date.now()}-${fileName}`;
+  const url = await getUploadUrl(key, fileType);
+  res.json({ uploadUrl: url, key });
+});
+
+app.listen(3000, () => console.log("Server running on 3000"));
 
 
 
