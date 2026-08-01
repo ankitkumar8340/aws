@@ -8,3 +8,65 @@ AWS_ACCESS_KEY_ID=your_key
 AWS_SECRET_ACCESS_KEY=your_secret
 AWS_REGION=ap-south-1
 S3_BUCKET_NAME=your-bucket-name
+
+
+2. Basic — Create a bucket + upload/download/delete a file
+javascript
+import "dotenv/config";
+import {
+  S3Client,
+  CreateBucketCommand,
+  PutObjectCommand,
+  GetObjectCommand,
+  DeleteObjectCommand,
+  ListObjectsV2Command,
+} from "@aws-sdk/client-s3";
+import fs from "fs";
+
+const s3 = new S3Client({
+  region: process.env.AWS_REGION,
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  },
+});
+
+const BUCKET = process.env.S3_BUCKET_NAME;
+
+// Upload a file
+async function uploadFile(filePath, key) {
+  const fileContent = fs.readFileSync(filePath);
+  const command = new PutObjectCommand({
+    Bucket: BUCKET,
+    Key: key, // e.g. "images/profile.png"
+    Body: fileContent,
+    ContentType: "image/png", // adjust based on file type
+  });
+  const res = await s3.send(command);
+  console.log("Uploaded:", key, res);
+}
+
+// List objects
+async function listFiles() {
+  const command = new ListObjectsV2Command({ Bucket: BUCKET });
+  const res = await s3.send(command);
+  console.log(res.Contents?.map((obj) => obj.Key));
+}
+
+// Delete a file
+async function deleteFile(key) {
+  const command = new DeleteObjectCommand({ Bucket: BUCKET, Key: key });
+  await s3.send(command);
+  console.log("Deleted:", key);
+}
+
+await uploadFile("./test.png", "images/test.png");
+await listFiles();
+
+
+
+
+
+
+
+
