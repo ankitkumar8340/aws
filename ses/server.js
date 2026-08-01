@@ -12,6 +12,7 @@ const client = new SESClient({
   }
 });
 
+
 const command = new SendEmailCommand({
   Source: "ankitkumarswe01@gmail.com",
   Destination: {
