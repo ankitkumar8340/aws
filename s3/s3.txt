@@ -63,7 +63,33 @@ async function deleteFile(key) {
 await uploadFile("./test.png", "images/test.png");
 await listFiles();
 
+3. Intermediate — Presigned URLs (very relevant for your backend work)
 
+Instead of exposing your AWS keys or making the bucket public, generate a temporary signed URL the frontend can use directly:
+
+javascript
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import { PutObjectCommand, GetObjectCommand } from "@aws-sdk/client-s3";
+
+// Give frontend a temporary URL to upload directly to S3
+async function getUploadUrl(key, contentType) {
+  const command = new PutObjectCommand({
+    Bucket: BUCKET,
+    Key: key,
+    ContentType: contentType,
+  });
+  const url = await getSignedUrl(s3, command, { expiresIn: 300 }); // 5 min
+  return url;
+}
+
+// Give frontend a temporary URL to download/view a private file
+async function getDownloadUrl(key) {
+  const command = new GetObjectCommand({ Bucket: BUCKET, Key: key });
+  const url = await getSignedUrl(s3, command, { expiresIn: 3600 }); // 1 hr
+  return url;
+}
+
+This is the standard pattern for things like profile picture uploads: your Express backend generates a presigned URL, sends it to the frontend, and the browser uploads directly to S3 — your server never touches the raw file bytes. Scales much better than routing uploads through your server.
 
 
 
