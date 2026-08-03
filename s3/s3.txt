@@ -82,6 +82,8 @@ async function getUploadUrl(key, contentType) {
   return url;
 }
 
+
+
 // Give frontend a temporary URL to download/view a private file
 async function getDownloadUrl(key) {
   const command = new GetObjectCommand({ Bucket: BUCKET, Key: key });
